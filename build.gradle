@@ -13,7 +13,6 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath("org.springframework:springloaded:${springLoadedVersion}")
 	}
 }
 
@@ -23,7 +22,7 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 jar {
-	baseName = 'spring-boot-sample-web-static'
+	baseName = 'sample-web-static'
 	version =  '0.0.1'
 }
 
