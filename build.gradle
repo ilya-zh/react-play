@@ -41,4 +41,6 @@ dependencies {
 	testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
-task wrapper(type: Wrapper) { gradleVersion = '1.6' }
+processResources{
+	exclude 'static/jsx'
+}

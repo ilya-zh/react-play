@@ -2,7 +2,6 @@ package sample.web.staticcontent;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Class description here
@@ -17,5 +16,11 @@ public class ControllerMain
   public String home()
   {
     return "index.html";
+  }
+
+  @RequestMapping("/fReact")
+  public String firstReact()
+  {
+    return "firstReact.htm";
   }
 }
