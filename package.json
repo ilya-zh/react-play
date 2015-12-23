@@ -17,6 +17,7 @@
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.0.1",
+    "request": "^2.67.0",
     "rimraf": "^2.4.3",
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",
@@ -28,6 +29,7 @@
   },
   "scripts": {
     "build": "set NODE_ENV=production && webpack -p --config webpack.config.prod.js",
+    "deploy_for_dev": "webpack --config webpack.config.dev.js",
     "start": "node devServer.js"
   },
   "author": "Ilya Zhuravliov"

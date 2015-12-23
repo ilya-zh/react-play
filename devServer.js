@@ -1,6 +1,7 @@
 var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
+var request = require('request');
 var config = require('./webpack.config.dev');
 
 var app = express();
@@ -13,9 +14,13 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+/* front end express dev server is used for hot reloading, redirects all requests to backend server */
 app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'src/main/resources/static/index.html'));
+  var newUrl = 'http://localhost:8080' + req.path
+  console.log('Redirecting to '+ newUrl);
+  req.pipe(request(newUrl)).pipe(res);
 });
+
 
 app.listen(3000, 'localhost', function(err) {
   if (err) {
