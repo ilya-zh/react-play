@@ -2,3 +2,5 @@
 *.iml
 src/main/resources/static/js/*
 node_modules
+build/
+.gradle/

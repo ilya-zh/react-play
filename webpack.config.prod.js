@@ -4,15 +4,13 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './src/index'
+    path.resolve(__dirname, './src/main/resources/static/jsx/some.jsx')
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'build/resources/main/static/assets/js'),
     filename: 'bundle.js',
-    publicPath: '/static/'
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
@@ -26,9 +24,10 @@ module.exports = {
   ],
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loaders: ['babel'],
-      include: path.join(__dirname, 'src')
+      include: path.join(__dirname, 'src'),
+      exclude: '/node_modules/'
     }]
   }
 };

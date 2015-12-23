@@ -18,9 +18,9 @@ public class ControllerMain
     return "index.html";
   }
 
-  @RequestMapping("/fReact")
+  @RequestMapping("/firstReact")
   public String firstReact()
   {
-    return "firstReact.htm";
+    return "pages/firstReact.htm";
   }
 }

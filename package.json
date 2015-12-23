@@ -27,9 +27,7 @@
     "react-dom": "^0.14.3"
   },
   "scripts": {
-    "clean": "rimraf dist",
-    "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
-    "build": "npm run clean && npm run build:webpack",
+    "build": "set NODE_ENV=production && webpack -p --config webpack.config.prod.js",
     "start": "node devServer.js"
   },
   "author": "Ilya Zhuravliov"
