@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import Griddle from 'griddle-react';
 
 var App = React.createClass({
 
@@ -22,14 +23,9 @@ var App = React.createClass({
   render: function() {
     return (
     <div>
-     <button type="button" onClick={this.retrieveApiResponse}>Refresh</button>
-      <ul>
-       {
-         this.state.apiResponse.map((item) => {
-           return <li key={item.id}>ID: {item.id}, title: {item.title}</li>
-         })
-       }
-      </ul>
+      <Griddle results={this.state.apiResponse} showFilter={true} columns={["userId", "id", "title", "body"]}
+       showPager={false} resultsPerPage={100000} />
+      <button type="button" onClick={this.retrieveApiResponse}>Refresh</button>
     </div>
     );
   }
