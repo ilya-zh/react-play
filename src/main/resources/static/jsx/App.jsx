@@ -3,6 +3,22 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Griddle from 'griddle-react';
 
+var TableButton = React.createClass({
+
+  action: function() {
+    // do submit stuff here
+  },
+  render: function() {
+    return (
+    <div>
+      <button type="button" disabled={this.props.rowData.id > 1} onClick={this.action}>
+        {this.props.rowData.id > 1 ? "Freeze" :"Thaw"}
+      </button>
+    </div>
+    );
+  }
+});
+
 var App = React.createClass({
 
   getInitialState: function(){
@@ -21,10 +37,15 @@ var App = React.createClass({
     this.retrieveApiResponse();
   },
   render: function() {
+  var columnMeta = [
+    {
+    "columnName": "Action",
+    "customComponent": TableButton
+    }];
     return (
     <div>
-      <Griddle results={this.state.apiResponse} showFilter={true} columns={["userId", "id", "title", "body"]}
-       showPager={false} resultsPerPage={100000} />
+      <Griddle results={this.state.apiResponse} showFilter={true} columns={["id", "title", "body", "Action"]}
+       showPager={false} resultsPerPage={5} columnMetadata={columnMeta} />
       <button type="button" onClick={this.retrieveApiResponse}>Refresh</button>
     </div>
     );
