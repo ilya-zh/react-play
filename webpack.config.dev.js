@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
     'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
-    './src/main/resources/static/jsx/some.jsx'
+    './src/main/resources/static/jsx/App.jsx'
   ],
   output: {
     path: path.join(__dirname, 'build/resources/main/static/assets/js'),
