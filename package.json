@@ -35,9 +35,10 @@
   "dependencies": {
     "griddle-react": "^0.3.0",
     "jquery": "^2.1.4",
+    "normalize.css": "^3.0.3",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "skeleton-scss": "^2.0.4",
+    "skeleton-css-webpack": "^2.0.4",
     "underscore": "^1.8.3"
   },
   "scripts": {

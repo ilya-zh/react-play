@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -8,20 +9,23 @@ module.exports = {
     './src/main/resources/static/jsx/App.jsx'
   ],
   output: {
-    path: path.join(__dirname, 'build/resources/main/static/assets/js'),
+    path: path.join(__dirname, 'build/resources/main/static/assets'),
     filename: 'bundle.js',
-    publicPath: '/assets/js/'
+    publicPath: '/assets/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new ExtractTextPlugin("[name].css", {
+                    allChunks: true
+    })
   ],
   module: {
-    loaders: [{
+    loaders: [
+    {
       test: /\.jsx?$/,
       loaders: ['babel'],
-      include: path.join(__dirname, 'src'),
-      exclude: '/node_modules/'
+      include: path.join(__dirname, 'src')
     },
     // SASS
     {
@@ -30,7 +34,7 @@ module.exports = {
     },
     {
       test: /\.css$/,
-      loader: 'style!css!sass',
+      loader: ExtractTextPlugin.extract("style-loader", "css-loader")
     },
     {
       test: /\.(png|woff|woff2|eot|ttf|svg)$/,

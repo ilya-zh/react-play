@@ -1,14 +1,17 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 
 module.exports = {
   devtool: 'source-map',
   entry: [
-    path.resolve(__dirname, './src/main/resources/static/jsx/some.jsx')
+    path.resolve(__dirname, './src/main/resources/static/jsx/App.jsx')
   ],
   output: {
-    path: path.join(__dirname, 'build/resources/main/static/assets/js'),
+    path: path.join(__dirname, 'build/resources/main/static/assets'),
     filename: 'bundle.js',
+    publicPath: '/assets/'
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -20,10 +23,14 @@ module.exports = {
       compressor: {
         warnings: false
       }
+    }),
+    new ExtractTextPlugin("[name].css", {
+                allChunks: true
     })
   ],
   module: {
-    loaders: [{
+    loaders: [
+    {
       test: /\.jsx?$/,
       loaders: ['babel'],
       include: path.join(__dirname, 'src'),
@@ -32,7 +39,15 @@ module.exports = {
     // SASS
     {
       test: /\.scss$/,
-      loader: 'style!css!sass'
+      loader: ExtractTextPlugin.extract("sass-loader", "css-loader", "sass-loader")
+    },
+    {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+    },
+    {
+      test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+      loader: 'url-loader?limit=100000'
     }]
   }
 };

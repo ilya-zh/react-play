@@ -5,6 +5,7 @@ global.jQuery = require('jquery');
 import Griddle from 'griddle-react';
 import { Button } from 'react-bootstrap';
 require('bootstrap/dist/css/bootstrap.css');
+require("../css/styles.css");
 
 
 var TableButton = React.createClass({
@@ -47,11 +48,15 @@ var App = React.createClass({
     "customComponent": TableButton
     }];
     return (
-      <div class="form-group">
-        <Button bsStyle="primary" onClick={this.retrieveApiResponse}>Refresh</Button>
+      <div className="container-fluid">
+        <div className="form-group">
+        <Button bsStyle="primary" onClick={this.retrieveApiResponse}>
+          Refresh
+        </Button>
+        </div>
         <Griddle results={this.state.apiResponse} showFilter={true} columns={["id", "title", "body", "Action"]}
          showPager={false} resultsPerPage={3} columnMetadata={columnMeta}
-         tableClassName="table table-responsive table-hover" />
+         tableClassName="table-hover" />
       </div>
     );
   }
