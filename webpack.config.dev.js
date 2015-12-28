@@ -22,6 +22,19 @@ module.exports = {
       loaders: ['babel'],
       include: path.join(__dirname, 'src'),
       exclude: '/node_modules/'
+    },
+    // SASS
+    {
+      test: /\.scss$/,
+      loader: 'style!css!sass',
+    },
+    {
+      test: /\.css$/,
+      loader: 'style!css!sass',
+    },
+    {
+      test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+      loader: 'url-loader?limit=100000'
     }]
   }
 };

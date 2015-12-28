@@ -28,6 +28,11 @@ module.exports = {
       loaders: ['babel'],
       include: path.join(__dirname, 'src'),
       exclude: '/node_modules/'
+    },
+    // SASS
+    {
+      test: /\.scss$/,
+      loader: 'style!css!sass'
     }]
   }
 };

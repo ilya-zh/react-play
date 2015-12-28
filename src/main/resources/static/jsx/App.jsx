@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+global.jQuery = require('jquery');
 import Griddle from 'griddle-react';
+import { Button } from 'react-bootstrap';
+require('bootstrap/dist/css/bootstrap.css');
+
 
 var TableButton = React.createClass({
 
@@ -11,9 +15,9 @@ var TableButton = React.createClass({
   render: function() {
     return (
     <div>
-      <button type="button" disabled={this.props.rowData.id > 1} onClick={this.action}>
+      <Button disabled={this.props.rowData.id > 1} onClick={this.action}>
         {this.props.rowData.id > 1 ? "Freeze" :"Thaw"}
-      </button>
+      </Button>
     </div>
     );
   }
@@ -43,11 +47,12 @@ var App = React.createClass({
     "customComponent": TableButton
     }];
     return (
-    <div>
-      <Griddle results={this.state.apiResponse} showFilter={true} columns={["id", "title", "body", "Action"]}
-       showPager={false} resultsPerPage={5} columnMetadata={columnMeta} />
-      <button type="button" onClick={this.retrieveApiResponse}>Refresh</button>
-    </div>
+      <div class="form-group">
+        <Button bsStyle="primary" onClick={this.retrieveApiResponse}>Refresh</Button>
+        <Griddle results={this.state.apiResponse} showFilter={true} columns={["id", "title", "body", "Action"]}
+         showPager={false} resultsPerPage={3} columnMetadata={columnMeta}
+         tableClassName="table table-responsive table-hover" />
+      </div>
     );
   }
 });
