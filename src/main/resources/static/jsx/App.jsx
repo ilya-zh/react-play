@@ -55,7 +55,7 @@ var App = React.createClass({
         </Button>
         </div>
         <Griddle results={this.state.apiResponse} showFilter={true} columns={["id", "title", "body", "Action"]}
-         showPager={false} resultsPerPage={3} columnMetadata={columnMeta}
+         showPager={false} resultsPerPage={3} columnMetadata={columnMeta} filterPlaceholderText={"Filter results"}
          tableClassName="table-hover" />
       </div>
     );
